@@ -176,7 +176,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.luckyowl.bigdata.BigDataJavaApplication</mainClass>
+                    <mainClass>com.luckyowl.bigdata.BigDataProjectApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

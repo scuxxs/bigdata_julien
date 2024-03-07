@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BigDataJavaApplication {
+public class BigDataProjectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BigDataJavaApplication.class, args);
+        SpringApplication.run(BigDataProjectApplication.class, args);
     }
 
 }
