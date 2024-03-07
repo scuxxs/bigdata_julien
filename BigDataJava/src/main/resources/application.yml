@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    mysql:
+      jdbc-url: jdbc:mysql://localhost:3306/bigdata
+      username: root
+      password: LoveOwlAllTime0
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    hive:
+      jdbc-url: jdbc:hive2://172.16.0.205:10000/default #hive默认数据库
+      username: julien
+      password:
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
