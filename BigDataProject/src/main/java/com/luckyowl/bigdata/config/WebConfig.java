@@ -12,6 +12,6 @@ public class WebConfig implements WebMvcConfigurer {
         //配置权限验证拦截器
         registry.addInterceptor(new AuthorityInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/userManage/**","/index/**");
+                .excludePathPatterns("/userManage/**","/index/**","/test/**");
     }
 }

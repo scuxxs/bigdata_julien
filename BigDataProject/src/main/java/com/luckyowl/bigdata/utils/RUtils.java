@@ -17,10 +17,25 @@ public class RUtils {
         return r;
     }
 
+    public static R success(Object object, String msg){
+        R r = new R();
+        r.setCode(REnum.SUCCESS.getCode());
+        r.setMsg(msg);
+        r.setData(object);
+        return r;
+    }
+
     public static R error(){
         R r = new R();
         r.setCode(REnum.ERROR.getCode());
         r.setMsg(REnum.ERROR.getMsg());
+        return r;
+    }
+
+    public static R error(String setMsg){
+        R r = new R();
+        r.setCode(REnum.ERROR.getCode());
+        r.setMsg(setMsg);
         return r;
     }
 }
