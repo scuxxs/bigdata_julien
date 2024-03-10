@@ -2,6 +2,7 @@ package com.luckyowl.bigdata.controller;
 
 import com.luckyowl.bigdata.entity.hive.Student;
 import com.luckyowl.bigdata.entity.mysql.User;
+import com.luckyowl.bigdata.utils.LocalAccountUtil;
 import com.luckyowl.bigdata.utils.R;
 import com.luckyowl.bigdata.utils.RUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,13 @@ public class IndexController {
 
     @GetMapping("/test")
     public R test(){
-        return RUtils.success("test");
+        User user = LocalAccountUtil.getUserData();
+        return RUtils.success(user, "获取到USER");
+    }
+
+    @GetMapping("/test2")
+    public R test2(){
+        User user = LocalAccountUtil.getUserData();
+        return RUtils.success(user, "获取到USER2");
     }
 }

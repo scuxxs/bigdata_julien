@@ -8,10 +8,7 @@ import com.luckyowl.bigdata.utils.IpUtil;
 import com.luckyowl.bigdata.utils.R;
 import com.luckyowl.bigdata.utils.RUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +37,17 @@ public class UserManageController {
     @RequestMapping("/loginTest")
     public R login(){
         return RUtils.success("LoginTest");
+    }
+
+    /**
+     * 登录失败重新登录
+     * @param
+     * @return
+     */
+    @GetMapping("/reLogin")
+    public R reLogin(){
+        R r = RUtils.relogin();
+        return RUtils.relogin();
     }
 
     /**

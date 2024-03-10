@@ -21,6 +21,10 @@ public class AuthorityInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        //获取URI
+        String getURI = request.getRequestURI();
+
         //获取Ip
         String ipAddress = IpUtil.getIpFromRequest(request);
         if(ipAddress == null){
@@ -34,10 +38,11 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         }
 
         //根据ip获取请求免密放行权限
-        if(loginTokenService.getPermission(ipAddress, request.getCookies(), response)){
+        if(loginTokenService.getPermission(ipAddress, request, response)){
             return true;
         }
-        response.sendRedirect("/userManage/loginTest");
+        //未登录
+        response.sendRedirect("/userManage/reLogin");
         return false;
     }
 
