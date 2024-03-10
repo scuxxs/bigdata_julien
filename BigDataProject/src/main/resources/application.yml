@@ -1,5 +1,2 @@
 server:
   port: 8080
-
-login:
-  secret-key: JULIEN

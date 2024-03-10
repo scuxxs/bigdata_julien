@@ -4,6 +4,7 @@ import com.luckyowl.bigdata.entity.mysql.User;
 import com.luckyowl.bigdata.service.mysql.UserManageService;
 import com.luckyowl.bigdata.utils.BCryptUtil;
 import com.luckyowl.bigdata.utils.Const.UserManageRConst;
+import com.luckyowl.bigdata.utils.IpUtil;
 import com.luckyowl.bigdata.utils.R;
 import com.luckyowl.bigdata.utils.RUtils;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/userManage")
@@ -26,8 +29,17 @@ public class UserManageController {
      * @return
      */
     @RequestMapping("/login")
-    public R login(@RequestBody User loginuser){
-        return userManageService.loginByUser(loginuser);
+    public R login(@RequestBody User loginuser, HttpServletRequest request, HttpServletResponse response){
+        String netIp = IpUtil.getIpFromRequest(request);
+        return userManageService.loginByUser(loginuser, netIp, response);
+    }
+
+    /**
+     * 登录接口(测试)
+     */
+    @RequestMapping("/loginTest")
+    public R login(){
+        return RUtils.success("LoginTest");
     }
 
     /**

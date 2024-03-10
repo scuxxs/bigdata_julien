@@ -2,6 +2,7 @@ package com.luckyowl.bigdata.interceptors;
 
 import com.luckyowl.bigdata.entity.mysql.LoginToken;
 import com.luckyowl.bigdata.service.mysql.LoginTokenService;
+import com.luckyowl.bigdata.utils.IpUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,10 +22,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //获取Ip
-        String ipAddress = request.getHeader("X-Forwarded-For");
-        if(ipAddress == null){
-            ipAddress = request.getRemoteAddr();
-        }
+        String ipAddress = IpUtil.getIpFromRequest(request);
         if(ipAddress == null){
             return false;
         }
@@ -35,11 +33,11 @@ public class AuthorityInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        //根据ip获取请求放行权限
+        //根据ip获取请求免密放行权限
         if(loginTokenService.getPermission(ipAddress, request.getCookies(), response)){
             return true;
         }
-
+        response.sendRedirect("/userManage/loginTest");
         return false;
     }
 

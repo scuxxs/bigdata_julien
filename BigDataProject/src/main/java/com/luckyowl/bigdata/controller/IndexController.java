@@ -42,4 +42,8 @@ public class IndexController {
         return RUtils.success(list);
     }*/
 
+    @GetMapping("/test")
+    public R test(){
+        return RUtils.success("test");
+    }
 }
