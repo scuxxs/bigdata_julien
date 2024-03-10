@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.6.7",
     "element-plus": "^2.6.0",
+    "mockjs": "^1.1.0",
     "sass": "^1.71.1",
     "sass-loader": "^14.1.1",
     "unplugin-element-plus": "^0.8.0",
     "vue": "^3.4.19",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

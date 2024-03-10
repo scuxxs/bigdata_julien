@@ -24,8 +24,19 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
-.r-container{
+.el-container{
   flex-wrap: wrap;
+  align-items: flex-start;
+}
+.common-layout{
+  height: 100%;
+  & > .el-container{
+    height: 100%;
+    & > .el-aside{
+      height: 100%;
+      background:#545c64;
+    }
+  }
 }
 
 </style>
