@@ -35,6 +35,7 @@
 <script >
 
 import {useRouter} from 'vue-router'
+import axios from "axios";
 export default {
   setup(){
     //修改左侧目录页

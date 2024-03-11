@@ -1,9 +1,8 @@
 // 路由文件
 import { createRouter, createWebHistory } from "vue-router";
-
 //import Home from '../views/home/Home.vue'
-
 const routes = [
+
     {
         path: '/',
         component: () => import('../views/Main.vue'),
@@ -33,7 +32,8 @@ const routes = [
     },
     {
         path: '/login',
-        component:()=>import('../views/Login.vue')
+        component: () => import('../components/LoginView.vue')
+
     }
 ]
 
@@ -41,18 +41,9 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
+export default router;
 
 
-//router.beforeEach((to,from)=>{
-    // if(to.meta.requireAuth) {
-    //     let token = localStorage.getItem('auth-system-token');
-    //     let isLogin = localStorage.getItem('auth-system-login');
-    //     if(!token||!isLogin){
-    //         return {
-    //             path: '/login'
-    //         }
-    //     }
-    // }
-//})
 
- export default router;
+
+

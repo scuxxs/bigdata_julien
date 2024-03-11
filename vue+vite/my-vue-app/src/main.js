@@ -9,6 +9,7 @@ import store from './store/index.js';
 import  './api/mockData/mock.js';
 
 
+
 const app =createApp(App)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -18,3 +19,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(router).use(store)
 app.mount('#app')
 //app.use(ElementPlus)
+
+
+
+
+
+
+// The Vue build version to load with the `import` command
+
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+

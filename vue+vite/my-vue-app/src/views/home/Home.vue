@@ -31,6 +31,12 @@
     </el-col>
       <el-col :span="16" style="margin-top: 20px">
     </el-col>
+<!--    <div class="num">
+      <el-card :body-style="{display:'flex',padding:0}">
+        //传入数据
+
+      </el-card>
+    </div>-->
   </el-row>
 </template>
 <script>
@@ -38,6 +44,7 @@ import axios from "axios";
 import {defineComponent,getCurrentInstance,onMounted,ref} from "vue";
 export default defineComponent({
   setup(){
+
     const {proxy}= getCurrentInstance();
     let tableData = ref([]);
     const tableLabel={
@@ -81,17 +88,29 @@ export default defineComponent({
       margin-right: 40px;
     }
   }
-  .login-info{
-    p{
+
+  .login-info {
+    p {
       line-height: 30px;
       font-size: 14px;
       color: #999;
-      span{
-        color:#666;
+
+      span {
+        color: #666;
         margin-left: 60px;
       }
     }
   }
+
+/*  .num{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .el-card{
+      width: 32%;
+      margin-bottom: 20px;
+    }
+}*/
 }
 </style>
 
