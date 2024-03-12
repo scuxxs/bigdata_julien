@@ -2,7 +2,7 @@
   <el-row class="search" :gutter="70">
     <el-card shadow="hover" style="margin-top: 20px; margin-left: 40px;" height="900px">
       <div class="table-container" style="overflow-y: auto;">
-        <el-table :data="pagedTableData">
+        <el-table :data="pagedTableData"  style="width: 100%">
           <el-table-column
               v-for="(val, key) in tableLabel"
               :key="key"
