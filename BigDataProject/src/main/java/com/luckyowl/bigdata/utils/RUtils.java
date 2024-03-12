@@ -55,4 +55,8 @@ public class RUtils {
     public static R relogin(){
         return trans(REnum.NOLOGIN);
     }
+
+    public static R wrongParam(){
+        return trans(REnum.WRONGPARM);
+    }
 }

@@ -2,17 +2,15 @@ package com.luckyowl.bigdata.controller.usermanage;
 
 import com.luckyowl.bigdata.entity.mysql.User;
 import com.luckyowl.bigdata.service.mysql.UserManageService;
-import com.luckyowl.bigdata.utils.BCryptUtil;
+import com.luckyowl.bigdata.utils.*;
 import com.luckyowl.bigdata.utils.Const.UserManageRConst;
-import com.luckyowl.bigdata.utils.IpUtil;
-import com.luckyowl.bigdata.utils.R;
-import com.luckyowl.bigdata.utils.RUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/userManage")
@@ -37,6 +35,15 @@ public class UserManageController {
     @RequestMapping("/loginTest")
     public R login(){
         return RUtils.success("LoginTest");
+    }
+
+    @GetMapping("/getUser")
+    public R getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = LocalAccountUtil.getUserData();
+        if(user == null){
+            response.sendRedirect("/userManage/reLogin");
+        }
+        return RUtils.success(user);
     }
 
     /**
