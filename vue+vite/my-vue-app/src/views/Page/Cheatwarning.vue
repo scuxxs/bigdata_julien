@@ -62,8 +62,12 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import api from '../../api/mockData/axios.js';
-const textarea = ref('')
 export default {
+  data() {
+    return {
+      textarea: ''
+    };
+  },
   methods: {
     goTo(route) {
       this.$router.push(route);
