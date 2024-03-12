@@ -40,9 +40,25 @@
   </el-row>
 </template>
 <script>
+import api from '../../api/mockData/axios.js';
+import { createRouter, createWebHistory } from "vue-router";
 import axios from "axios";
 import {defineComponent,getCurrentInstance,onMounted,ref} from "vue";
+import router from "../../router/index.js";
+try {
+  const homerequest = await api.get('/api/home/inithome');
+  console.log(homerequest.data.code)
+  if(homerequest.data.code === 301){
+     router.replace('/login')
+    }
+  else{
+    alert(homerequest.data.msg);
+  }
+} catch (error) {
+  console.error("请求错误:", error.message); // 添加错误处理，打印错误信息
+}
 export default defineComponent({
+  //表格
   setup(){
 
     const {proxy}= getCurrentInstance();

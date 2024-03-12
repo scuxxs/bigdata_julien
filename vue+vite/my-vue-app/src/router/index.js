@@ -6,7 +6,7 @@ const routes = [
     {
         path: '/',
         component: () => import('../views/Main.vue'),
-        redirect:'/home',
+        redirect:'/login',
         children:[
             {
                 path:'/home',
@@ -19,14 +19,19 @@ const routes = [
                 component: () => import('../views/User/User.vue')
             },
             {
-                path:'page1',
-                name:'page1',
-                component: () => import('../views/Page/Page1.vue')
+                path:'/search',
+                name:'search',
+                component: () => import('../views/Page/Search.vue')
             },
             {
-                path:'page2',
+                path:'/page2',
                 name:'page2',
                 component: () => import('../views/Page/Page2.vue')
+            },
+            {
+                path:'/student',
+                name:'student',
+                component: () => import('../views/student/Student.vue')
             },
         ]
     },

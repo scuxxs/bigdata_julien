@@ -53,11 +53,11 @@ export default {
           path: '/other',
           children: [
             {
-              path: '/page1',
-              name: 'page1',
-              label: '页面1',
+              path: '/search',
+              name: 'search',
+              label: '综合查询',
               icon: 'setting',
-              url: 'Other/PageOne'
+              url: 'Other/Search'
             },
             {
               path: '/page2',
