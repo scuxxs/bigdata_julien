@@ -1,0 +1,71 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luckyowl.bigdata.mapper.hive.StudentMapper">
+
+    <select id="getAllStudentInfo" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student limit 1000
+    </select>
+
+    <select id="getStudentByCondition" parameterType="com.luckyowl.bigdata.dto.StudentDTO" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student
+        WHERE
+        <if test="studentDto.id != null">
+              id in
+            <foreach collection="studentDto.id" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.name != null and studentDto.name.size() > 0">
+            name in
+            <foreach collection="studentDto.name" item="name" open="(" separator="," close=")">
+                #{name}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.college != null and studentDto.college.size() > 0">
+            college in
+            <foreach collection="studentDto.college" item="college" open="(" separator="," close=")">
+                #{college}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.major != null and studentDto.major.size() > 0">
+            major in
+            <foreach collection="studentDto.major" item="major" open="(" separator="," close=")">
+                #{major}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.node_name != null and studentDto.node_name.size() > 0">
+            node_name in
+            <foreach collection="studentDto.node_name" item="node_name" open="(" separator="," close=")">
+                #{node_name}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.late_level != null and studentDto.late_level.size() > 0">
+            late_level in
+            <foreach collection="studentDto.late_level" item="late_level" open="(" separator="," close=")">
+                #{late_level}
+            </foreach>
+            AND
+        </if>
+        <if test="studentDto.cheat_level != null and studentDto.cheat_level.size() > 0">
+            cheat_level in
+            <foreach collection="studentDto.cheat_level" item="cheat_level" open="(" separator="," close=")">
+                #{cheat_level}
+            </foreach>
+            AND
+        </if>
+        1 == 1
+    </select>
+
+    <select id="getNumOfStudent" resultType="Integer">
+        select count(*) from student
+    </select>
+
+</mapper>
