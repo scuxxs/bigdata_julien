@@ -1,8 +1,17 @@
 <template>
-  <el-row class="search" :gutter="60">
-    <el-card shadow="hover" style="margin-top: 20px; margin-left: 40px; max-height:800px">
+  <div class="mb-4">
+    <el-button  type="info" @click="goTo('/warning')" round>学业预警</el-button>
+    <el-button   type="info" @click="goTo('/latewarning')" round>迟到预警  </el-button>
+    <el-button   type="info" @click="goTo('/mentalwarning')" round>心理预警</el-button>
+    <el-button  type="warning" @click="goTo('/povertywarning')" round>贫困预警</el-button>
+    <el-button  type="info" @click="goTo('/politicswarning')" round>政治预警</el-button>
+    <el-button type="info" @click="goTo('/cheatwarning')" round>防诈预警</el-button>
+  </div>
+  <el-row class="search" :gutter="40">
+    <el-card shadow="hover" style=" margin-left: 40px; max-height:700px">
       <div class="table-container" style="overflow-y: auto;">
-        <el-table :data="pagedTableData"  style="width: 100%">
+        <el-table :data="pagedTableData"  style="width: 100%" >
+          <el-table-column type="selection" width="55" />
           <el-table-column
               v-for="(val, key) in tableLabel"
               :key="key"
@@ -31,6 +40,11 @@ import axios from 'axios';
 import api from '../../api/mockData/axios.js';
 
 export default {
+    methods: {
+      goTo(route) {
+        this.$router.push(route);
+      }
+    },
   setup() {
     let tableData = ref([]);
     const tableLabel = {
@@ -38,13 +52,7 @@ export default {
       id: 'ID',
       college: '学院',
       major: '专业',
-      late_level: '迟到预警',
-      cheat_level: '防诈预警',
-      poverty_level: '贫困预警',
-      politics_level: '政治预警',
-      academy_level: '学术预警',
-      mental_level: '心理预警',
-      total_grade: '总成绩',
+      poverty_level: '学业预警',
     };
 
     const pagedTableData = ref([]);
@@ -80,7 +88,7 @@ export default {
 
 <style>
 .table-container {
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
 }
 </style>

@@ -48,7 +48,7 @@ export default {
           url: 'UserManage/UserManage'
         },
         {
-          label: '其他',
+          label: '用户信息',
           icon: 'location',
           path: '/other',
           children: [
@@ -60,12 +60,57 @@ export default {
               url: 'Other/Search'
             },
             {
-              path: '/page2',
-              name: 'page2',
-              label: '页面2',
+              path: '/warning',
+              name: 'warning',
+              label: '预警管理',
               icon: 'setting',
-              url: 'Other/PageTwo'
-            }
+              url: 'Other/Warning'
+            },
+
+            //       path: '/latewarning',
+            //       name: 'latewarning',
+            //       label: '迟到预警',
+            //       icon: 'edit',
+            //       url: 'Other/Latewarning',
+            //     },
+
+                // {
+                //   path: '/cheatwarning',
+                //   name: 'cheatwarning',
+                //   label: '防诈预警',
+                //   icon: 'WarnTriangleFilled',
+                //   url: 'Other/Warning/Cheatwarning',
+                // },
+                // {
+                //   path: '/academywarning',
+                //   name: 'academywarning',
+                //   label: '学业预警',
+                //   icon: 'WarnTriangleFilled ',
+                //   url: 'Other/Warning/Academywarning',
+                // },
+                // {
+                //   path: '/mentalwarning',
+                //   name: 'mentalwarning',
+                //   label: '心理预警',
+                //   icon: 'WarnTriangleFilled ',
+                //   url: 'Other/Warning/Mentalwarning',
+                // },
+                // {
+                //   path: '/politicswarning',
+                //   name: 'politicswarning',
+                //   label: '政治预警',
+                //   icon: 'WarnTriangleFilled ',
+                //   url: 'Other/Warning/Politicswarning',
+                // },
+                // {
+                //   path: '/povertywarning',
+                //   name: 'povertywarning',
+                //   label: '贫困预警',
+                //   icon: 'WarnTriangleFilled ',
+                //   url: 'Other/Warning/Povertywarning',
+                // },
+            //     ]
+            // }
           ]
         }
       ];

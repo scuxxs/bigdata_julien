@@ -24,14 +24,39 @@ const routes = [
                 component: () => import('../views/Page/Search.vue')
             },
             {
-                path:'/page2',
-                name:'page2',
-                component: () => import('../views/Page/Page2.vue')
-            },
-            {
                 path:'/student',
                 name:'student',
                 component: () => import('../views/student/Student.vue')
+            },
+            {
+                path: '/warning',
+                name: 'warning',
+                component: () => import('../views/Page/Warning.vue')
+            },
+            {
+                path: '/latewarning',
+                name: 'latewarning',
+                component: () => import('../views/Page/Latewarning.vue')
+            },
+            {
+                path: '/cheatwarning',
+                name: 'cheatwarning',
+                component: () => import('../views/Page/Cheatwarning.vue')
+            },
+            {
+                path: '/mentalwarning',
+                name: 'mentalwarning',
+                component: () => import('../views/Page/Mentalwarning.vue')
+            },
+            {
+                path: '/politicswarning',
+                name: 'politicswarning',
+                component: () => import('../views/Page/Politicswarning.vue')
+            },
+            {
+                path: '/povertywarning',
+                name: 'povertywarning',
+                component: () => import('../views/Page/Povertywarning.vue')
             },
         ]
     },
@@ -39,7 +64,8 @@ const routes = [
         path: '/login',
         component: () => import('../components/LoginView.vue')
 
-    }
+    },
+
 ]
 
 const router = createRouter({
