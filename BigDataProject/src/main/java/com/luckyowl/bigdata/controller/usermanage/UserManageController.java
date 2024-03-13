@@ -63,6 +63,7 @@ public class UserManageController {
      */
     @PostMapping("/register")
     public R register(@RequestBody User user){
+
         return userManageService.registerUser(user);
     }
 

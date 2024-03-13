@@ -10,7 +10,7 @@
     </insert>
 
     <select id="getPrecautionByUid" parameterType="String" resultType="com.luckyowl.bigdata.entity.mysql.Precaution">
-        select * from precaution_notice where uid = #{uid}
+        select * from precaution_notice where uid = #{uid} order by precaution_type
     </select>
 
 </mapper>

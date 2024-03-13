@@ -4,7 +4,7 @@
     <select id="getAllStudentInfo" resultType="com.luckyowl.bigdata.entity.hive.Student">
         SELECT id, name, college, major, node_name, late_level,
                cheat_level, poverty_level, politics_level,
-               academy_level, mental_level, total_grade FROM student limit 1000
+               academy_level, mental_level, total_grade FROM student order by total_grade desc limit 1000
     </select>
 
     <select id="getStudentByCondition" parameterType="com.luckyowl.bigdata.dto.StudentDTO" resultType="com.luckyowl.bigdata.entity.hive.Student">
