@@ -74,13 +74,14 @@ export default {
     },
     submitData() {
       const data = {
-        studentList: this.selectedRows,
-        msg: this.textarea,
         precautionType:1,
+        msg: this.textarea,
+        studentList: this.selectedRows,
       };
       // 向后端发送数据，可以使用 axios 或其他 HTTP 请求库
       api.post('/api/precaution/late', data)
           .then(response => {
+            alert(response.data.msg)
             // 处理成功响应
           })
           .catch(error => {
@@ -101,7 +102,7 @@ export default {
       id: 'ID',
       college: '学院',
       major: '专业',
-      cheat_level: '学业预警',
+      cheat_level: '防诈预警',
     };
 
     const pagedTableData = ref([]);

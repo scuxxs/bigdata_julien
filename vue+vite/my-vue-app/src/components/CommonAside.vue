@@ -3,7 +3,7 @@
     <el-menu class="el-menu-vertical-demo" background-color="#545c64"
              text-color="#fff" :collapse="!$store.state.isCollapse"
              :collapse-transition="false">
-      <h3 v-show="$store.state.isCollapse">学生界面</h3>
+      <h3 v-show="$store.state.isCollapse">管理界面</h3>
       <h3 v-show="!$store.state.isCollapse">界面</h3>
       <el-menu-item :index="item.path" v-for="item in noChildren()"
                     :key="item.path"

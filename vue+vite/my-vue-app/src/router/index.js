@@ -24,11 +24,6 @@ const routes = [
                 component: () => import('../views/Page/Search.vue')
             },
             {
-                path:'/student',
-                name:'student',
-                component: () => import('../views/student/Student.vue')
-            },
-            {
                 path: '/warning',
                 name: 'warning',
                 component: () => import('../views/Page/Warning.vue')
@@ -64,6 +59,11 @@ const routes = [
         path: '/login',
         component: () => import('../components/LoginView.vue')
 
+    },
+    {
+        path:'/student',
+        name:'student',
+        component: () => import('../views/student/Student.vue')
     },
 
 ]

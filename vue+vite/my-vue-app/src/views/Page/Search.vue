@@ -1,6 +1,6 @@
 <template>
   <el-row class="search" :gutter="60">
-    <el-card shadow="hover" style="margin-top: 20px; margin-left: 40px; max-height:800px">
+    <el-card shadow="hover" style="margin-top: 20px; margin-left: 40px; max-height:700px">
       <div class="table-container" style="overflow-y: auto;">
         <el-table :data="pagedTableData"  style="width: 100%">
           <el-table-column
