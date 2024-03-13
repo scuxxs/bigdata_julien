@@ -36,6 +36,9 @@ async function handleLogin() {
       const refreshToken = response.headers['refresh_token'];
       console.log(refreshToken)
       localStorage.setItem('refreshToken', refreshToken);
+      const uid =response.data.data.uid
+      localStorage.setItem('uid', uid);
+      console.log(uid)
       if(response.data.data.authorization){
         router.replace('/home')
       }

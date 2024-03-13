@@ -47,42 +47,39 @@
               <info-filled />
             </el-icon>
             </template>
-            <div>
-            学业预警
+            <div v-for="item in panelData.academicWarning">{{ item }}
             </div>
-            <div>
-              学业差
-            </div>
+
           </el-collapse-item>
           <el-collapse-item title="迟到预警" name="2">
-            <div>
-            迟到
+            <div v-for="item in panelData.lateWarning">{{ item }}
             </div>
           </el-collapse-item>
           <el-collapse-item title="心理预警" name="3">
-            <div>
-            心理
+            <div v-for="item in panelData.mentalWarning">{{ item }}
             </div>
           </el-collapse-item>
           <el-collapse-item title="贫困预警" name="4">
-            <div>
-              Decision making: giving advices about operations is acceptable, but do
-              not make decisions for the users;
+            <div v-for="item in panelData.povertyWarning">{{ item }}
             </div>
           </el-collapse-item>
           <el-collapse-item title="政治预警" name="5">
-            <div>
-             政治
+            <div v-for="item in panelData.politicsWarning">{{ item }}
             </div>
           </el-collapse-item>
           <el-collapse-item title="防诈预警" name="6">
-            <div>
-             cheat
+            <div v-for="item in panelData.cheatWarning">{{ item }}
             </div>
           </el-collapse-item>
           <!-- 折叠面板内容 -->
         </el-collapse>
+        <el-carousel :interval="4000" type="card" height="200px">
+          <el-carousel-item v-for="(item, index) in carouselItems" :key="index">
+            <h3>{{ item.title }}</h3>
+          </el-carousel-item>
+        </el-carousel>
       </div>
+
     </el-main>
   </el-container>
 </template>
@@ -92,30 +89,91 @@ import { InfoFilled } from '@element-plus/icons-vue'
 import  {useStore} from "vuex";
 import {useRouter} from 'vue-router'
 import axios from "axios";
+import api from '../../api/mockData/axios.js';
 export default {
+  // data() {
+  //   return {
+  //     panelData: [], // 后端获取的数据
+  //   };
+  // },
   setup(){
+    const carouselItems = ref([
+      { title: 'Academy'},
+      { title: 'Late' },
+      { title: 'Cheat' },
+      { title: 'Politics' },
+      { title: 'Poverty' },
+      { title: 'Mental'},
+      { title: 'Total'},
+    ]);
+    const uid = localStorage.getItem('uid');
+    const panelData = ref({});
     const fetchPanelContent = async (uid) => {
       try {
-        const response = await axios.get(`/api/precaution/late/student/${uid}`);
+        const response = await api.get(`/api/precaution/late/student?uid=${uid}`);
         console.log(response.data.data);
-        const panelcontent = response.data.data.map(item => item.msg);
-        return panelcontent;
+        const data = response.data.data;
+        const academicWarning = []; // 学业预警
+        const lateWarning = []; // 迟到预警
+        const mentalWarning = []; // 心理预警
+        const povertyWarning = []; // 贫困预警
+        const cheatWarning = []; // 防诈预警
+        const politicsWarning = []; // 政治预警
+
+        data.forEach((item) => {
+          console.log(item.precaution_type)
+          switch (item.precaution_type) {
+            case 4 :
+              academicWarning.push(item.msg);
+              break;
+            case 0 :
+              lateWarning.push(item.msg);
+              break;
+            case 5 :
+              mentalWarning.push(item.msg);
+              break;
+            case 2 :
+              povertyWarning.push(item.msg);
+              break;
+            case 1 :
+              cheatWarning.push(item.msg);
+              break;
+            case 3 :
+              politicsWarning.push(item.msg);
+              break;
+            default:
+              break;
+          }
+        });
+        panelData.value = {
+          academicWarning,
+          lateWarning,
+          mentalWarning,
+          povertyWarning,
+          cheatWarning,
+          politicsWarning,
+        };
       } catch (error) {
         console.error('Failed to fetch panel content:', error);
-        return [];
+        panelData.value = {
+          academicWarning: [],
+          lateWarning: [],
+          mentalWarning: [],
+          povertyWarning: [],
+          cheatWarning:[],
+          politicsWarning:[],
+        };
       }
     };
-
 // 通过 fetchPanelContent 函数获取折叠面板内容
     const getPanelContent = async (uid) => {
-      const content = await fetchPanelContent(uid);
+      const data = await fetchPanelContent(uid);
       // 将折叠面板内容存储到 state 中
-      store.commit('updatePanelContent', content);
+      store.commit('updatePanelContent', data);
     };
-
 // 在组件初始化时获取折叠面板内容
     onMounted(() => {
-      const uid = 'student'; // 替换成实际的uid
+      //替换成实际的uid
       getPanelContent(uid);
     });
     let store = useStore()
@@ -154,7 +212,9 @@ export default {
       hasChildren,
       clickMenu,
       handleCollapse,
-      getImgSrc
+      getImgSrc,
+      panelData,
+      carouselItems,
     };
   },
 };
@@ -216,5 +276,20 @@ header {
 .el-collapse {
   background-color: #f0f0f0; /* 设置折叠面板背景色 */
   border-radius: 5px; /* 设置边框圆角 */
+}
+.el-carousel__item h3 {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>
