@@ -4,7 +4,7 @@
     <el-button   type="info" @click="goTo('/latewarning')" round>迟到预警 </el-button>
     <el-button   type="info" @click="goTo('/mentalwarning')" round>心理预警</el-button>
     <el-button  type="info" @click="goTo('/povertywarning')" round>贫困预警</el-button>
-    <el-button  type="warning" @click="goTo('/politicswarning')" round>政治预警</el-button>
+    <el-button  type="warning" @click="goTo('/politicswarning')" round>思政预警</el-button>
     <el-button type="info" @click="goTo('/cheatwarning')" round>防诈预警</el-button>
   </div>
   <el-row class="search" :gutter="40">
@@ -102,7 +102,7 @@ export default {
       id: 'ID',
       college: '学院',
       major: '专业',
-      politics_level: '政治预警',
+      politics_level: '思政预警',
     };
 
     const pagedTableData = ref([]);

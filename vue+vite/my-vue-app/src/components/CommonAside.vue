@@ -98,7 +98,7 @@ export default {
                 // {
                 //   path: '/politicswarning',
                 //   name: 'politicswarning',
-                //   label: '政治预警',
+                //   label: '思政预警',
                 //   icon: 'WarnTriangleFilled ',
                 //   url: 'Other/Warning/Politicswarning',
                 // },

@@ -7,7 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import './assets/less/index.less'
 import store from './store/index.js';
 import  './api/mockData/mock.js';
-
+import { ElNotification } from 'element-plus'
 
 
 const app =createApp(App)
@@ -19,7 +19,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(router).use(store)
 app.mount('#app')
 app.use(ElementPlus)
-
+app.use(ElNotification)
 
 
 

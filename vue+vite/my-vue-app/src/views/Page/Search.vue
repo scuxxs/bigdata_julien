@@ -41,7 +41,7 @@ export default {
       late_level: '迟到预警',
       cheat_level: '防诈预警',
       poverty_level: '贫困预警',
-      politics_level: '政治预警',
+      politics_level: '思政预警',
       academy_level: '学术预警',
       mental_level: '心理预警',
       total_grade: '总成绩',

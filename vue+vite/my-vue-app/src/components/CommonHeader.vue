@@ -7,7 +7,6 @@
               <Menu />
             </el-icon>
           </el-button>
-      <h3>首页</h3>
     </div>
     <div class="r-content">
       <el-dropdown>
@@ -16,8 +15,8 @@
     </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click="goHome">个人中心</el-dropdown-item>
+            <el-dropdown-item @click="handleLogout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -27,8 +26,17 @@
 <script>
 
 import  {useStore} from "vuex";
+import router from "../router/index.js";
 
 export default {
+  methods :{
+    handleLogout(){
+      router.push('/login')
+    },
+    goHome(){
+      router.replace('/home')
+    }
+  },
   setup(){
     let store = useStore()
    // const imgSrc =require('../assets/images/user.png')

@@ -7,7 +7,7 @@
             <Menu />
           </el-icon>
         </el-button>
-        <h3>首页</h3>
+        <h3>Welcome!</h3>
       </div>
       <div class="r-content">
         <el-dropdown>
@@ -17,7 +17,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item  @click="handleLogout" >退出</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -41,7 +41,7 @@
     <el-main>
       <div class="main-container">
         <el-collapse accordion>
-          <el-collapse-item name="1">
+          <el-collapse-item  @click="openNotification" name="1">
             <template #title>
               学业预警<el-icon class="header-icon">
               <info-filled />
@@ -49,7 +49,6 @@
             </template>
             <div v-for="item in panelData.academicWarning">{{ item }}
             </div>
-
           </el-collapse-item>
           <el-collapse-item title="迟到预警" name="2">
             <div v-for="item in panelData.lateWarning">{{ item }}
@@ -63,7 +62,7 @@
             <div v-for="item in panelData.povertyWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="政治预警" name="5">
+          <el-collapse-item title="思政预警" name="5">
             <div v-for="item in panelData.politicsWarning">{{ item }}
             </div>
           </el-collapse-item>
@@ -90,13 +89,28 @@ import  {useStore} from "vuex";
 import {useRouter} from 'vue-router'
 import axios from "axios";
 import api from '../../api/mockData/axios.js';
+import router from "../../router/index.js";
+import { ElNotification } from 'element-plus';
 export default {
+
+  methods :{
+    handleLogout(){
+      router.push('/login')
+    }
+  },
   // data() {
   //   return {
   //     panelData: [], // 后端获取的数据
   //   };
   // },
   setup(){
+    const openNotification = () => {
+      ElNotification({
+        title: 'Warning',
+        message: 'This is a warning message',
+        type: 'warning',
+      });
+    }
     const carouselItems = ref([
       { title: 'Academy'},
       { title: 'Late' },
@@ -118,28 +132,27 @@ export default {
         const mentalWarning = []; // 心理预警
         const povertyWarning = []; // 贫困预警
         const cheatWarning = []; // 防诈预警
-        const politicsWarning = []; // 政治预警
-
+        const politicsWarning = []; // 思政预警
         data.forEach((item) => {
           console.log(item.precaution_type)
           switch (item.precaution_type) {
             case 4 :
-              academicWarning.push(item.msg);
+              academicWarning.push(item.precaution_level,item.msg);
               break;
             case 0 :
-              lateWarning.push(item.msg);
+              lateWarning.push(item.precaution_level,item.msg);
               break;
             case 5 :
-              mentalWarning.push(item.msg);
+              mentalWarning.push(item.precaution_level,item.msg);
               break;
             case 2 :
-              povertyWarning.push(item.msg);
+              povertyWarning.push(item.precaution_level,item.msg);
               break;
             case 1 :
-              cheatWarning.push(item.msg);
+              cheatWarning.push(item.precaution_level,item.msg);
               break;
             case 3 :
-              politicsWarning.push(item.msg);
+              politicsWarning.push(item.precaution_level,item.msg);
               break;
             default:
               break;
@@ -215,6 +228,7 @@ export default {
       getImgSrc,
       panelData,
       carouselItems,
+      openNotification
     };
   },
 };
@@ -292,4 +306,8 @@ header {
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
+//.warning-item {
+//  display: flex;
+//  justify-content: space-between;
+//}
 </style>
