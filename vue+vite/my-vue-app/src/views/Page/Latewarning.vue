@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <el-button  type="info" @click="goTo('/warning')" round>学业预警</el-button>
-    <el-button   type="warning" @click="goTo('/latewarning')" round>迟到预警 </el-button>
+    <el-button   type="warning" @click="goTo('/latewarning')" round>晚归预警 </el-button>
     <el-button   type="info" @click="goTo('/mentalwarning')" round>心理预警</el-button>
     <el-button  type="info" @click="goTo('/povertywarning')" round>贫困预警</el-button>
     <el-button  type="info" @click="goTo('/politicswarning')" round>思政预警</el-button>
@@ -102,13 +102,13 @@ export default {
       id: 'ID',
       college: '学院',
       major: '专业',
-      late_level: '迟到预警',
+      late_level: '晚归预警',
     };
 
     const pagedTableData = ref([]);
     const currentPage = ref(1);
     onMounted(() => {
-      api.get('/api/search/all')
+      api.get('/api/search/getLate')
           .then(response => {
             tableData.value = response.data.data;
             console.log(response.data.data);

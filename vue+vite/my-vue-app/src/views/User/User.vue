@@ -1,6 +1,15 @@
 <template>
   <div style="width: 100%;height: 1000px; display: flex;">
     <div class="right">
+      <el-select v-model="Svalue" placeholder="Select" style="width: 240px;margin-left: 60px" >
+        <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+            :disabled="item.disabled"
+        />
+      </el-select>
     <div style="width: 100%;height: 750px" id="main" ref="major"></div>
     </div>
     <div class="left">
@@ -11,10 +20,38 @@
 </template>
 
 <script>
+import {defineComponent,getCurrentInstance,onMounted,ref} from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import api from '../../api/mockData/axios.js';
 import * as echarts from 'echarts';
+import router from "../../router/index.js";
 
+try {
+  const homerequest = await api.get('/api/home/inithome');
+  console.log(homerequest.data.code)
+  if(homerequest.data.code === 301){
+    router.replace('/login')
+  }
+  else{
+    alert(homerequest.data.msg);
+  }
+} catch (error) {
+  console.error("请求错误:", error.message); // 添加错误处理，打印错误信息
+}
 
 export default {
+  data() {
+    return {
+      Svalue: '',
+      options: [
+        {value: 'Option1', label: 'Option1'},
+        {value: 'Option2', label: 'Option2'},
+        {value: 'Option3', label: 'Option3'},
+        {value: 'Option4', label: 'Option4'},
+        {value: 'Option5', label: 'Option5'}
+      ]
+    }
+  },
   mounted() {
     var chartDom = this.$refs.major;
     var myChart = echarts.init(chartDom);

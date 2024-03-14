@@ -95,7 +95,7 @@ export default {
       id: 'ID',
       college: '学院',
       major: '专业',
-      late_level: '迟到预警',
+      late_level: '晚归预警',
       cheat_level: '防诈预警',
       poverty_level: '贫困预警',
       politics_level: '思政预警',

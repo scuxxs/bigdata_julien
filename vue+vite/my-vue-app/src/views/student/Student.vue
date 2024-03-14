@@ -16,7 +16,6 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>个人中心</el-dropdown-item>
               <el-dropdown-item  @click="handleLogout" >退出</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -43,42 +42,52 @@
         <el-collapse accordion>
           <el-collapse-item  @click="openNotification" name="1">
             <template #title>
-              学业预警<el-icon class="header-icon">
+              学业预警通知<el-icon class="header-icon">
               <info-filled />
             </el-icon>
             </template>
             <div v-for="item in panelData.academicWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="迟到预警" name="2">
+          <el-collapse-item title="晚归预警通知" name="2">
             <div v-for="item in panelData.lateWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="心理预警" name="3">
+          <el-collapse-item title="心理预警通知" name="3">
             <div v-for="item in panelData.mentalWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="贫困预警" name="4">
+          <el-collapse-item title="贫困预警通知" name="4">
             <div v-for="item in panelData.povertyWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="思政预警" name="5">
+          <el-collapse-item title="思政预警通知" name="5">
             <div v-for="item in panelData.politicsWarning">{{ item }}
             </div>
           </el-collapse-item>
-          <el-collapse-item title="防诈预警" name="6">
+          <el-collapse-item title="防诈预警通知" name="6">
             <div v-for="item in panelData.cheatWarning">{{ item }}
             </div>
           </el-collapse-item>
           <!-- 折叠面板内容 -->
         </el-collapse>
-        <el-carousel :interval="4000" type="card" height="200px">
+
+        <el-carousel :interval="4000" type="card" height="150px">
           <el-carousel-item v-for="(item, index) in carouselItems" :key="index">
             <h3>{{ item.title }}</h3>
           </el-carousel-item>
         </el-carousel>
       </div>
-
+      <div class="right">
+        <el-calendar style="height: 500px;width: 600px;margin-right: 20px" >
+          <template #date-cell="{ data }">
+            <p :class="data.isSelected ? 'is-selected' : ''">
+              {{ data.day.split('-').slice(1).join('-') }}
+              {{ data.isSelected ? '✔️' : '' }}
+            </p>
+          </template>
+        </el-calendar>
+      </div>
     </el-main>
   </el-container>
 </template>
@@ -128,7 +137,7 @@ export default {
         console.log(response.data.data);
         const data = response.data.data;
         const academicWarning = []; // 学业预警
-        const lateWarning = []; // 迟到预警
+        const lateWarning = []; // 晚归预警
         const mentalWarning = []; // 心理预警
         const povertyWarning = []; // 贫困预警
         const cheatWarning = []; // 防诈预警
@@ -137,22 +146,22 @@ export default {
           console.log(item.precaution_type)
           switch (item.precaution_type) {
             case 4 :
-              academicWarning.push(item.precaution_level,item.msg);
+              academicWarning.push(item.msg);
               break;
             case 0 :
-              lateWarning.push(item.precaution_level,item.msg);
+              lateWarning.push(item.msg);
               break;
             case 5 :
-              mentalWarning.push(item.precaution_level,item.msg);
+              mentalWarning.push(item.msg);
               break;
             case 2 :
-              povertyWarning.push(item.precaution_level,item.msg);
+              povertyWarning.push(item.msg);
               break;
             case 1 :
-              cheatWarning.push(item.precaution_level,item.msg);
+              cheatWarning.push(item.msg);
               break;
             case 3 :
-              politicsWarning.push(item.precaution_level,item.msg);
+              politicsWarning.push(item.msg);
               break;
             default:
               break;
@@ -278,34 +287,51 @@ header {
 }
 
 .main-container {
-  position: absolute;
-  top: 64px; /* 调整折叠面板距离顶部的位置 */
-  right: 0; /* 将折叠面板显示在右侧 */
-  width: calc(100% - 180px); /* 设置宽度为除去左侧菜单栏的剩余空间 */
-  height: calc(100% - 64px); /* 设置高度为除去头部的剩余空间 */
-  overflow: auto; /* 添加滚动条 */
-  padding: 15px; /* 添加内边距 */
+    position: absolute;
+    top: 64px; /* 调整折叠面板距离顶部的位置 */
+    left: 180px; /* 将折叠面板显示在右侧 */
+    width: calc(60% - 180px); /* 设置宽度为除去左侧菜单栏的剩余空间 */
+    height: calc(100% - 64px); /* 设置高度为除去头部的剩余空间 */
+    overflow: auto; /* 添加滚动条 */
+    padding: 20px; /* 添加内边距 */
+  }
+
+
+  .el-collapse {
+    background-color: #f0f0f0; /* 设置折叠面板背景色 */
+    border-radius: 10px; /* 设置边框圆角 */
+  }
+
+  .el-carousel__item h3 {
+    color: #475669;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0px;
+    text-align: center;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n + 1) {
+    background-color: #d3dce6;
+  }
+  .right {
+    position: absolute;
+    top: 64px; /* 与折叠面板顶部对齐 */
+    right: 30px; /* 固定在页面右侧 */
+    width: calc(50% - 180px); /* 设置宽度为右侧40%的空间，减去折叠面板的宽度 */
+    height: calc(100% - 64px); /* 设置高度为除去头部的剩余空间 */
+    overflow: auto; /* 添加滚动条 */
+    padding: 20px; /* 添加内边距 */
+  }
+
+.is-selected {
+  color: #1989fa;
 }
 
-.el-collapse {
-  background-color: #f0f0f0; /* 设置折叠面板背景色 */
-  border-radius: 5px; /* 设置边框圆角 */
-}
-.el-carousel__item h3 {
-  color: #475669;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
-  text-align: center;
-}
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
 //.warning-item {
 //  display: flex;
 //  justify-content: space-between;

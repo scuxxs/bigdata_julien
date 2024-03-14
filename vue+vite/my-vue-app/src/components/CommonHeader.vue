@@ -15,7 +15,6 @@
     </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="goHome">个人中心</el-dropdown-item>
             <el-dropdown-item @click="handleLogout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -33,9 +32,9 @@ export default {
     handleLogout(){
       router.push('/login')
     },
-    goHome(){
-      router.replace('/home')
-    }
+    // goHome(){
+    //   router.replace('/home')
+    // }
   },
   setup(){
     let store = useStore()

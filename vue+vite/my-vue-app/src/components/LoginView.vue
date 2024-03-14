@@ -40,7 +40,7 @@ async function handleLogin() {
       localStorage.setItem('uid', uid);
       console.log(uid)
       if(response.data.data.authorization){
-        router.replace('/home')
+        router.replace('/user')
       }
       else {
         router.replace('/student')

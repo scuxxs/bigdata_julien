@@ -69,7 +69,7 @@ export default {
 
             //       path: '/latewarning',
             //       name: 'latewarning',
-            //       label: '迟到预警',
+            //       label: '晚归预警',
             //       icon: 'edit',
             //       url: 'Other/Latewarning',
             //     },

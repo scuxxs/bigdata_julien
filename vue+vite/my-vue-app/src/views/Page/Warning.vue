@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <el-button  type="warning" @click="goTo('/warning')" round>学业预警</el-button>
-    <el-button   type="info" @click="goTo('/latewarning')" round>迟到预警 </el-button>
+    <el-button   type="info" @click="goTo('/latewarning')" round>晚归预警 </el-button>
     <el-button   type="info" @click="goTo('/mentalwarning')" round>心理预警</el-button>
     <el-button  type="info" @click="goTo('/povertywarning')" round>贫困预警</el-button>
     <el-button  type="info" @click="goTo('/politicswarning')" round>思政预警</el-button>
@@ -108,7 +108,7 @@ export default {
     const pagedTableData = ref([]);
     const currentPage = ref(1);
     onMounted(() => {
-      api.get('/api/search/all')
+      api.get('/api/search/getAcademy')
           .then(response => {
             tableData.value = response.data.data;
             console.log(response.data.data);
