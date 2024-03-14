@@ -19,7 +19,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(router).use(store)
 app.mount('#app')
 app.use(ElementPlus)
-app.use(ElNotification)
+
 
 
 

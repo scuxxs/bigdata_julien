@@ -9,7 +9,7 @@
   </div>
   <el-row class="search" :gutter="40">
     <el-col :span="12">
-    <el-card shadow="hover" style=" margin-left: 40px; max-height:700px">
+    <el-card shadow="hover" style=" margin-left: 20px; max-height:690px">
       <div class="table-container" style="overflow-y: auto;">
         <el-table :data="pagedTableData"  style="width: 100%" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" />
@@ -139,7 +139,7 @@ export default {
 
 <style>
 .table-container {
-  height: 90%;
+  height: 660px;
   overflow-y: auto;
 }
 </style>

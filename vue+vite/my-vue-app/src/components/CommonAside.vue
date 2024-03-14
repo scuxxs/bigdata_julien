@@ -43,8 +43,8 @@ export default {
         {
           path: '/user',
           name: 'user',
-          label: '用户管理',
-          icon: 'user',
+          label: '可视大厅',
+          icon: 'SwitchFilled',
           url: 'UserManage/UserManage'
         },
         {
