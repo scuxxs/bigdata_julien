@@ -110,7 +110,9 @@
             <p :class="data.isSelected ? 'is-selected' : ''">
               {{ data.day.split('-').slice(1).join('-') }}
               {{ data.isSelected ? '✔️' : '' }}</p>
-              <p v-if="data.day === '2024-02-18'|| data.day === '2024-03-12'"  style="color:darkred;">Late</p>
+              <p v-if="data.day === '2023-12-18'|| data.day === '2023-12-12'|| data.day === '2023-12-22'|| data.day
+              === '2023-12-30'|| data.day === '2023-11-27'"
+                 style="color:darkred;">Late</p>
           </template>
         </el-calendar>
       </div>

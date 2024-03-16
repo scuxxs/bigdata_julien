@@ -1,119 +1,109 @@
 <template>
-  <div class="login-container">
-  <table class="login-table" border="0" cellpadding="10">
-    <tr>
-      <td align="center">用户名</td>
-      <td><input id='uid' type="text" v-model="uid" placeholder="请输入用户名"/></td>
-    </tr>
-    <tr>
-      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
-      <td><input id='password' type="password" v-model="password" placeholder="请输入密码"/></td>
-    </tr>
-    <tr align="center">
-      <td colspan="2">
-        <button @click="handleLogin">登录</button>
-      </td>
-    </tr>
-  </table>
+  <div class="body">
+    <div class="main">
+      <div class="switch" id="switch-cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+          <h2 class="switch__title title">Welcome Back !</h2>
+          <p class="switch__description description">To keep connected with us please login with your personal info</p>
+          <button class="switch__button button switch-btn" @click="change">SIGN IN</button>
+        </div>
+        <div class="switch__container is-hidden" id="switch-c2">
+          <h2 class="switch__title title">Hello Friend !</h2>
+          <p class="switch__description description">Enter your personal details and start journey with us</p>
+          <button class="switch__button button switch-btn" @click="change">SIGN UP</button>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
-<script setup>
-import {ref} from 'vue';
-import {useRouter} from 'vue-router';
-import axios from "axios";
-import {bool} from "mockjs/src/mock/random/basic.js";
-const router = useRouter();
-const uid = ref('');
-const password = ref('');
-
-async function handleLogin() {
-  try {
-    const response = await axios.post('/api/userManage/login', {uid: uid.value, password: password.value});
-    console.log(response.data.code)
-    if (response.data.code === 200) {
-      const accessToken = response.headers['access_token'];
-      console.log(accessToken)
-      localStorage.setItem('accessToken', accessToken);
-      const refreshToken = response.headers['refresh_token'];
-      console.log(refreshToken)
-      localStorage.setItem('refreshToken', refreshToken);
-      const uid =response.data.data.uid
-      localStorage.setItem('uid', uid);
-      console.log(uid)
-      if(response.data.data.authorization){
-        router.replace('/Option1')
-      }
-      else {
-        router.replace('/student')
-      }
-      // 使用后端返回的路径
-    } else if (response.data.code === -1) {
-      alert(response.data.msg);
-      uid.value = '';
-      password.value = '';
-      document.getElementById('uid').focus();
-    }
-  } catch (error) {
-    console.error("Error during login:", error.message); // 添加错误处理，打印错误信息
-  }
+<script setup lang="ts">
+const change = () => {
+  const switchC1 = document.querySelector("#switch-c1") as any;
+  const switchC2 = document.querySelector("#switch-c2") as any;
+  const switchCircle = document.querySelectorAll(".switch__circle") as any;
+  const switchCtn = document.querySelector("#switch-cnt") as any;
+  switchCtn.classList.add("is-gx");
+  setTimeout(function(){
+    switchCtn.classList.remove("is-gx");
+  }, 1500)
+  switchCtn.classList.toggle("is-txr");
+  switchCircle[0].classList.toggle("is-txr");
+  switchCircle[1].classList.toggle("is-txr");
+  switchC1.classList.toggle("is-hidden");
+  switchC2.classList.toggle("is-hidden");
 }
-
-
 </script>
 
-<style lang="less" scoped>
-.login-container {
+
+<style scoped >
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.body {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 让容器占据整个视口高度 */
-}
-/* 重置table样式 */
-.login-table {
-  width: 100%;
-  max-width: 300px;
-  border-collapse: collapse;
-  border-spacing: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  background-color: #ecf0f3;
+  color: #a0a5a8;
 }
 
-.login-table td {
-  padding-bottom: 16px;
-  padding-top: 16px;
-  padding-right: 0px;
-  padding-right: 8px;
-  vertical-align: middle;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.main {
+  position: relative;
+  width: 1000px;
+  min-width: 1000px;
+  min-height: 600px;
+  height: 600px;
+  padding: 25px;
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
 }
-
-.login-table input[type="text"],
-.login-table input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  box-sizing: border-box;
+@media (max-width: 1200px) {
+  .main {
+    transform: scale(0.7);
+  }
 }
-
-.login-table button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-
-  &:hover,
-  &:focus {
-    background-color: #0056b3;
+@media (max-width: 1000px) {
+  .main {
+    transform: scale(0.6);
+  }
+}
+@media (max-width: 800px) {
+  .main {
+    transform: scale(0.5);
+  }
+}
+@media (max-width: 600px) {
+  .main {
+    transform: scale(0.4);
+  }
+}
+.is-hidden{
+  opacity: 0;
+  position: absolute;
+  transition: 1.25s;
+}
+.is-gx{
+  animation: is-gx 1.25s;
+}
+@keyframes is-gx {
+  0%,10%,100%{
+    width: 400px;
+  }
+  30%,50%{
+    width: 500px;
   }
 }
 </style>

@@ -1,6 +1,5 @@
 // 路由文件
 import { createRouter, createWebHistory } from "vue-router";
-//import Home from '../views/home/Home.vue'
 const routes = [
 
     {
@@ -8,11 +7,6 @@ const routes = [
         component: () => import('../views/Main.vue'),
         redirect:'/login',
         children:[
-            // {
-            //     path:'/home',
-            //     name:'home',
-            //     component: () => import('../views/home/Home.vue')
-            // },
             {
                 path:'/Option1',
                 name:'user',
