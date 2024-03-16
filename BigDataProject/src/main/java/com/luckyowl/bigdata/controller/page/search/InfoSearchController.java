@@ -15,7 +15,7 @@ import java.util.List;
 public class InfoSearchController {
 
     @Resource
-    StudentService studentService;
+    private StudentService studentService;
 
     /**
      *
@@ -25,6 +25,13 @@ public class InfoSearchController {
         //todo 根据条件获取
         List<Student> studentList = null;
         studentList = studentService.getInfoByCondition(studentDTO);
+        return RUtils.success(studentList);
+    }
+
+    @PostMapping("/getStudent")
+    public R getStudent(@RequestBody Student student){
+        List<Student> studentList = null;
+        studentList = studentService.getStudent(student);
         return RUtils.success(studentList);
     }
 
@@ -40,5 +47,41 @@ public class InfoSearchController {
     @GetMapping("/getNum")
     public R getNumOfStudent(){
         return RUtils.success(studentService.getNumOfStudent());
+    }
+
+    @GetMapping("/getLate")
+    public R getLate(){
+        List<Student> studentList = studentService.getLate();
+        return RUtils.success(studentList);
+    }
+
+    @GetMapping("/getCheat")
+    public R getCheat(){
+        List<Student> studentList = studentService.getCheat();
+        return RUtils.success(studentList);
+    }
+
+    @GetMapping("/getPoverty")
+    public R getPoverty(){
+        List<Student> studentList = studentService.getPoverty();
+        return RUtils.success(studentList);
+    }
+
+    @GetMapping("/getPolitics")
+    public R getPolitics(){
+        List<Student> studentList = studentService.getPolitics();
+        return RUtils.success(studentList);
+    }
+
+    @GetMapping("/getAcademy")
+    public R getAcademy(){
+        List<Student> studentList = studentService.getAcademy();
+        return RUtils.success(studentList);
+    }
+
+    @GetMapping("/getMental")
+    public R getMental(){
+        List<Student> studentList = studentService.getMental();
+        return RUtils.success(studentList);
     }
 }

@@ -20,4 +20,18 @@ public interface StudentService {
 
     Integer getNumOfStudent();
 
+    List<Student> getLate();
+
+    List<Student> getCheat();
+
+    List<Student> getPoverty();
+
+    List<Student> getPolitics();
+
+    List<Student> getAcademy();
+
+    List<Student> getMental();
+
+    List<Student> getStudent(Student student);
+
 }

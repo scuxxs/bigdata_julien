@@ -65,7 +65,54 @@
     </select>
 
     <select id="getNumOfStudent" resultType="Integer">
-        select count(*) from student
+        select count(id) from student
+    </select>
+
+    <select id="getLate" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by late_level desc limit 1000
+    </select>
+
+    <select id="getCheat" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by cheat_level desc limit 1000
+    </select>
+
+    <select id="getPoverty" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by poverty_level desc limit 1000
+    </select>
+
+    <select id="getPolitics" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by politics_level desc limit 1000
+    </select>
+
+    <select id="getAcademy" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by academy_level desc limit 1000
+    </select>
+
+    <select id="getMental" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student order by mental_level desc limit 1000
+    </select>
+
+    <select id="getStudent" parameterType="com.luckyowl.bigdata.entity.hive.Student" resultType="com.luckyowl.bigdata.entity.hive.Student">
+        SELECT id, name, college, major, node_name, late_level,
+               cheat_level, poverty_level, politics_level,
+               academy_level, mental_level, total_grade FROM student
+        WHERE id like CONCAT('%', #{student.id}, '%')
+        AND name like CONCAT('%', #{student.name}, '%')
+        AND college like CONCAT('%', #{student.college}, '%')
+        AND major like CONCAT('%', #{student.major}, '%')
+        ORDER BY total_grade desc
     </select>
 
 </mapper>

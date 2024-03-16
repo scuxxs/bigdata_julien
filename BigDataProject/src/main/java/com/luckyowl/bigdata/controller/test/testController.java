@@ -36,4 +36,5 @@ public class testController {
     public R getAllStudent(){
         return RUtils.success(studentService.getAllStudentInfo());
     }
+
 }

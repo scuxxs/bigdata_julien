@@ -30,4 +30,55 @@ public class StudentServiceImpl implements StudentService {
         return studentMapper.getNumOfStudent();
     }
 
+    @Override
+    public List<Student> getLate() {
+        return studentMapper.getLate();
+    }
+
+    @Override
+    public List<Student> getCheat() {
+        return studentMapper.getCheat();
+    }
+
+    @Override
+    public List<Student> getPoverty() {
+        return studentMapper.getPoverty();
+    }
+
+    @Override
+    public List<Student> getPolitics() {
+        return studentMapper.getPolitics();
+    }
+
+    @Override
+    public List<Student> getAcademy() {
+        return studentMapper.getAcademy();
+    }
+
+    @Override
+    public List<Student> getMental() {
+        return studentMapper.getMental();
+    }
+
+    @Override
+    public List<Student> getStudent(Student student) {
+        return studentMapper.getStudent(initStudent(student));
+    }
+
+    public Student initStudent(Student student){
+        if(student.getId() == null){
+            student.setId("");
+        }
+        if(student.getName() == null){
+            student.setName("");
+        }
+        if(student.getMajor() == null){
+            student.setMajor("");
+        }
+        if(student.getCollege() == null){
+            student.setCollege("");
+        }
+        return student;
+    }
+
 }
