@@ -1,9 +1,9 @@
 <template>
   <el-aside :width="$store.state.isCollapse ? '180px' : '64px'">
-    <el-menu class="el-menu-vertical-demo" background-color="#545c64"
+    <el-menu class="el-menu-vertical-demo" background-color="#373B44"
              text-color="#fff" :collapse="!$store.state.isCollapse"
              :collapse-transition="false">
-      <h3 v-show="$store.state.isCollapse">管理界面</h3>
+      <h3 v-show="$store.state.isCollapse">Menu</h3>
       <h3 v-show="!$store.state.isCollapse">界面</h3>
       <el-menu-item :index="item.path" v-for="item in noChildren()"
                     :key="item.path"
@@ -41,7 +41,7 @@ export default {
     //修改左侧目录页
       const list =[
         {
-          path: '/user',
+          path: '/Option1',
           name: 'user',
           label: '可视大厅',
           icon: 'SwitchFilled',
@@ -56,7 +56,7 @@ export default {
               path: '/search',
               name: 'search',
               label: '综合查询',
-              icon: 'setting',
+              icon: 'search',
               url: 'Other/Search'
             },
             {

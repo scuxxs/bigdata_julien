@@ -23,7 +23,7 @@
       </div>
     </el-header>
     <el-aside :width="$store.state.isCollapse ? '180px' : '64px'">
-      <el-menu class="el-menu-vertical-demo" background-color="#545c64"
+      <el-menu class="el-menu-vertical-demo" background-color="#2C5364"
                text-color="#fff" :collapse="!$store.state.isCollapse"
                :collapse-transition="false">
         <h3 v-show="$store.state.isCollapse">学生界面</h3>
@@ -73,8 +73,34 @@
         </el-collapse>
 
         <el-carousel :interval="4000" type="card" height="150px">
-          <el-carousel-item v-for="(item, index) in carouselItems" :key="index">
-            <h3>{{ item.title }}</h3>
+
+          <el-carousel-item title="防诈预警通知" >
+            <div class="cheat" v-for="item in panelData.cheatLevel">Cheat-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="学业预警通知" >
+            <div class="academy" v-for="item in panelData.academicLevel">Academy-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="思政预警通知" >
+            <div class="politics" v-for="item in panelData.politicsLevel">Politics-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="贫困预警通知" >
+            <div class="poverty" v-for="item in panelData.povertyLevel">Poverty-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="迟到预警通知" >
+            <div class="late" v-for="item in panelData.lateLevel">Late-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="心理预警通知" >
+            <div class="mental" v-for="item in panelData.mentalLevel">Mental-Level:{{ item }}
+            </div>
+          </el-carousel-item>
+          <el-carousel-item title="迟到预警通知" >
+            <div class="total">Total-Grade:80
+            </div>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -83,8 +109,8 @@
           <template #date-cell="{ data }">
             <p :class="data.isSelected ? 'is-selected' : ''">
               {{ data.day.split('-').slice(1).join('-') }}
-              {{ data.isSelected ? '✔️' : '' }}
-            </p>
+              {{ data.isSelected ? '✔️' : '' }}</p>
+              <p v-if="data.day === '2024-02-18'|| data.day === '2024-03-12'"  style="color:darkred;">Late</p>
           </template>
         </el-calendar>
       </div>
@@ -101,7 +127,6 @@ import api from '../../api/mockData/axios.js';
 import router from "../../router/index.js";
 import { ElNotification } from 'element-plus';
 export default {
-
   methods :{
     handleLogout(){
       router.push('/login')
@@ -120,15 +145,15 @@ export default {
         type: 'warning',
       });
     }
-    const carouselItems = ref([
-      { title: 'Academy'},
-      { title: 'Late' },
-      { title: 'Cheat' },
-      { title: 'Politics' },
-      { title: 'Poverty' },
-      { title: 'Mental'},
-      { title: 'Total'},
-    ]);
+    // const carouselItems = ref([
+    //   { title: 'Academy-Level:' },
+    //   { title: 'Late' },
+    //   { title: 'Cheat' },
+    //   { title: 'Politics' },
+    //   { title: 'Poverty' },
+    //   { title: 'Mental'},
+    //   { title: 'Total'},
+    // ]);
     const uid = localStorage.getItem('uid');
     const panelData = ref({});
     const fetchPanelContent = async (uid) => {
@@ -142,26 +167,38 @@ export default {
         const povertyWarning = []; // 贫困预警
         const cheatWarning = []; // 防诈预警
         const politicsWarning = []; // 思政预警
+        const cheatLevel = []; // 防诈预警
+        const academicLevel = [];
+        const lateLevel = [];
+        const mentalLevel = [];
+        const povertyLevel = [];
+        const politicsLevel = [];
         data.forEach((item) => {
           console.log(item.precaution_type)
           switch (item.precaution_type) {
             case 4 :
               academicWarning.push(item.msg);
+              academicLevel.push(item.precaution_level);
               break;
             case 0 :
               lateWarning.push(item.msg);
+             lateLevel.push(item.precaution_level);
               break;
             case 5 :
               mentalWarning.push(item.msg);
+              mentalLevel.push(item.precaution_level);
               break;
             case 2 :
               povertyWarning.push(item.msg);
+              povertyLevel.push(item.precaution_level);
               break;
             case 1 :
               cheatWarning.push(item.msg);
+              cheatLevel.push(item.precaution_level);
               break;
             case 3 :
               politicsWarning.push(item.msg);
+              politicsLevel.push(item.precaution_level);
               break;
             default:
               break;
@@ -174,6 +211,12 @@ export default {
           povertyWarning,
           cheatWarning,
           politicsWarning,
+          cheatLevel,
+          mentalLevel,
+          lateLevel,
+          politicsLevel,
+          academicLevel,
+          povertyLevel,
         };
       } catch (error) {
         console.error('Failed to fetch panel content:', error);
@@ -184,6 +227,12 @@ export default {
           povertyWarning: [],
           cheatWarning:[],
           politicsWarning:[],
+          cheatLevel:[],
+          mentalLevel:[],
+          lateLevel:[],
+          politicsLevel:[],
+          academicLevel:[],
+          povertyLevel:[],
         };
       }
     };
@@ -236,7 +285,7 @@ export default {
       handleCollapse,
       getImgSrc,
       panelData,
-      carouselItems,
+      // carouselItems,
       openNotification
     };
   },
@@ -250,7 +299,7 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: #333;
+  background: #4286f4;
 }
 
 .r-content {
@@ -302,13 +351,55 @@ header {
     border-radius: 10px; /* 设置边框圆角 */
   }
 
-  .el-carousel__item h3 {
+  .cheat {
     color: #475669;
     opacity: 0.75;
     line-height: 150px;
     margin: 0px;
     text-align: center;
   }
+.late {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
+.mental {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
+.academy {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
+.politics {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
+.poverty {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
+.total{
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0px;
+  text-align: center;
+}
 
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;

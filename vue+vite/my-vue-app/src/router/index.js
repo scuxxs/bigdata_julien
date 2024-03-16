@@ -14,9 +14,29 @@ const routes = [
             //     component: () => import('../views/home/Home.vue')
             // },
             {
-                path:'/user',
+                path:'/Option1',
                 name:'user',
                 component: () => import('../views/User/User.vue')
+            },
+            {
+                path:'/Option2',
+                name:'Option2',
+                component: () => import('../views/User/Option2.vue')
+            },
+            {
+                path:'/Option3',
+                name:'Option3',
+                component: () => import('../views/User/Option3.vue')
+            },
+            {
+                path:'/Option4',
+                name:'Option4',
+                component: () => import('../views/User/Option4.vue')
+            },
+            {
+                path:'/Option5',
+                name:'Option5',
+                component: () => import('../views/User/Option5.vue')
             },
             {
                 path:'/search',

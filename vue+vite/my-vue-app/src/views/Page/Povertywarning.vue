@@ -46,12 +46,48 @@
           />
           <el-button type="primary" @click="submitData" round>通知</el-button>
         </div>
-        <el-card style="max-width: 480px">
-          <template #header>Yummy hamburger</template>
-          <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              style="width: 100%"
-          />
+        <el-card style="max-width: 600px">
+          <template #header>公告栏<el-icon><HelpFilled /></el-icon></template>
+          <el-card shadow="hover">
+            <div class="announcement">
+              <div>
+                <span> <el-tag type="danger" effect="dark">1</el-tag>  亲爱的同学们，本学期...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+              <div>
+                <span> <el-tag type="danger" effect="dark">2</el-tag>  关于开展 2023-2024学...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+              <div>
+                <span> <el-tag type="danger" effect="dark">3</el-tag>  关于开展 2023-2024学...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+              <div>
+                <span> <el-tag type="danger" effect="dark">4</el-tag>  选课系统开放时间的通知...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+              <div>
+                <span> <el-tag type="danger" effect="dark">5</el-tag>  关于2024-2025春季学...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+              <div>
+                <span> <el-tag type="danger" effect="dark">6</el-tag>  关于软件学院上程实训...  </span>
+              </div>
+              <el-divider>
+                <el-icon><star-filled /></el-icon>
+              </el-divider>
+            </div>
+          </el-card>
         </el-card>
       </el-card>
     </el-col>
@@ -74,7 +110,7 @@ export default {
     },
     submitData() {
       const data = {
-        precautionType:1,
+        precautionType:2,
         msg: this.textarea,
         studentList: this.selectedRows,
       };

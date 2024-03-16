@@ -1,4 +1,5 @@
 <template>
+  <div class="login-container">
   <table class="login-table" border="0" cellpadding="10">
     <tr>
       <td align="center">用户名</td>
@@ -14,6 +15,7 @@
       </td>
     </tr>
   </table>
+    </div>
 </template>
 
 <script setup>
@@ -40,7 +42,7 @@ async function handleLogin() {
       localStorage.setItem('uid', uid);
       console.log(uid)
       if(response.data.data.authorization){
-        router.replace('/user')
+        router.replace('/Option1')
       }
       else {
         router.replace('/student')
@@ -61,11 +63,16 @@ async function handleLogin() {
 </script>
 
 <style lang="less" scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 让容器占据整个视口高度 */
+}
 /* 重置table样式 */
 .login-table {
   width: 100%;
   max-width: 300px;
-  margin: 50px auto;
   border-collapse: collapse;
   border-spacing: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

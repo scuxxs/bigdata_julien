@@ -9,6 +9,12 @@ export default  createStore({
             povertyWarning: [],
             cheatWarning: [],
             politicsWarning: [],
+            cheatLevel:[],
+            mentalLevel:[],
+            povertyLevel:[],
+            politicsLevel:[],
+            lateLevel:[],
+            academicLevel:[],
         },
     },
     mutations:{

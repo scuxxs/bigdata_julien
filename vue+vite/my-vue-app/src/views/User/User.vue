@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;height: 1000px; display: flex;">
     <div class="right">
-      <el-select v-model="Svalue" placeholder="Select" style="width: 240px;margin-left: 60px" >
+      <el-select v-model="Svalue" placeholder="Select" style="width: 240px;margin-left: 60px" @change="handleSelectChange">
         <el-option
             v-for="item in options"
             :key="item.value"
@@ -10,13 +10,13 @@
             :disabled="item.disabled"
         />
       </el-select>
-    <div style="width: 100%;height: 750px" id="main" ref="major"></div>
+      <div style="width: 100%;height: 750px" id="main" ref="major"></div>
     </div>
     <div class="left">
-    <div class="left-top" style=" width: 600px;height: 350px" id="lineChart" ref="lineChart"></div>
-    <div class="left-bottom" style="width: 600px;height: 400px" id="pieChart" ref="pieChart"></div>
+      <div class="left-top" style=" width: 600px;height: 350px" id="lineChart" ref="lineChart"></div>
+      <div class="left-bottom" style="width: 600px;height: 400px" id="pieChart" ref="pieChart"></div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -25,6 +25,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import api from '../../api/mockData/axios.js';
 import * as echarts from 'echarts';
 import router from "../../router/index.js";
+import {  watch } from 'vue';
 
 try {
   const homerequest = await api.get('/api/home/inithome');
@@ -40,6 +41,12 @@ try {
 }
 
 export default {
+  methods: {
+    handleSelectChange(newValue) {
+      // 根据选择的值动态跳转到不同的页面
+      router.push({ path: `/${newValue}` });
+    }
+  },
   data() {
     return {
       Svalue: '',
@@ -49,20 +56,20 @@ export default {
         {value: 'Option3', label: 'Option3'},
         {value: 'Option4', label: 'Option4'},
         {value: 'Option5', label: 'Option5'}
-      ]
+      ],
     }
   },
+
   mounted() {
     var chartDom = this.$refs.major;
     var myChart = echarts.init(chartDom);
     var option;
-// There should not be negative values in rawData
-    const rawData = [
-      [100, 302, 301, 334, 390, 330, 320],
-      [320, 132, 101, 134, 90, 230, 210],
-      [220, 182, 191, 234, 290, 330, 310],
-      [150, 212, 201, 154, 190, 330, 410],
-      [820, 832, 901, 934, 1290, 1330, 1320]
+    const rawData =  [
+      [12, 4, 6, 18, 3, 12, 10],
+      [6, 7, 12, 4, 9, 2, 8],
+      [2, 11, 19, 2, 2, 13, 3],
+      [15, 2, 2, 15, 19, 3, 14],
+      [8, 8, 9, 9, 12, 13, 13]
     ];
     const totalData = [];
     for (let i = 0; i < rawData[0].length; ++i) {
@@ -84,11 +91,11 @@ export default {
     const barWidth = categoryWidth * 0.6;
     const barPadding = (categoryWidth - barWidth) / 2;
     const series = [
-      'Direct',
-      'Mail Ad',
-      'Affiliate Ad',
-      'Video Ad',
-      'Search Engine'
+      'Level 0',
+      'Level 1',
+      'Level 2',
+      'Level 3',
+      'Level 4'
     ].map((name, sid) => {
       return {
         name,
@@ -144,7 +151,7 @@ export default {
       },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: ['学业', '防诈', '心理', '思政', '迟到', '贫困']
       },
       series,
       graphic: {
@@ -155,7 +162,14 @@ export default {
     var lineChartDom = this.$refs.lineChart;
     var lineChart = echarts.init(lineChartDom);
 
-    const data = [["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 135], ["2000-06-08", 86], ["2000-06-09", 73], ["2000-06-10", 85], ["2000-06-11", 73], ["2000-06-12", 68], ["2000-06-13", 92], ["2000-06-14", 130], ["2000-06-15", 245], ["2000-06-16", 139], ["2000-06-17", 115], ["2000-06-18", 111], ["2000-06-19", 309], ["2000-06-20", 206], ["2000-06-21", 137], ["2000-06-22", 128], ["2000-06-23", 85], ["2000-06-24", 94], ["2000-06-25", 71], ["2000-06-26", 106], ["2000-06-27", 84], ["2000-06-28", 93], ["2000-06-29", 85], ["2000-06-30", 73], ["2000-07-01", 83], ["2000-07-02", 125], ["2000-07-03", 107], ["2000-07-04", 82], ["2000-07-05", 44], ["2000-07-06", 72], ["2000-07-07", 106], ["2000-07-08", 107], ["2000-07-09", 66], ["2000-07-10", 91], ["2000-07-11", 92], ["2000-07-12", 113], ["2000-07-13", 107], ["2000-07-14", 131], ["2000-07-15", 111], ["2000-07-16", 64], ["2000-07-17", 69], ["2000-07-18", 88], ["2000-07-19", 77], ["2000-07-20", 83], ["2000-07-21", 111], ["2000-07-22", 57], ["2000-07-23", 55], ["2000-07-24", 60]]; // Your data array here
+    const data = [["2023-11-26", 13], ["2023-11-27", 11], ["2023-11-28", 11], ["2023-11-29", 30],
+      ["2023-11-30", 20], ["2023-12-1", 13], ["2023-12-2", 12], ["2023-12-3", 8], ["2023-12-4", 9],
+      ["2023-12-5", 7], ["2023-12-6", 10], ["2023-12-7", 8], ["2023-12-8", 9], ["2023-12-9", 8],
+      ["2023-12-10", 7], ["2023-12-11", 8], ["2023-12-11", 12], ["2023-12-12", 10], ["2023-12-13", 8],
+      ["2023-12-14", 4], ["2023-12-15", 7], ["2023-12-16", 11], ["2023-12-17", 12], ["2023-12-18", 13], ["2023-12-19", 8], ["2023-12-20",
+      7], ["2023-12-21", 8], ["2023-12-22", 7], ["2023-12-23", 6], ["2023-12-24", 9], ["2023-12-25", 13],
+      ["2023-12-26", 24], ["2023-12-27", 10], ["2023-12-28", 10], ["2023-12-29", 6],
+      ["2023-12-30", 9], ["2023-12-31", 9],]
     const dateList = data.map(function (item) {
       return item[0];
     });
@@ -170,10 +184,10 @@ export default {
           type: 'continuous',
           seriesIndex: 0,
           min: 0,
-          max: 400
+          max: 40,
         },],
       title: {
-        text: 'Gradient along the y axis'
+        text: '人工智能专业'
       },
       tooltip: {
         trigger: 'axis'
@@ -217,14 +231,12 @@ export default {
             borderRadius: 8
           },
           data: [
-            { value: 40, name: 'rose 1' },
-            { value: 38, name: 'rose 2' },
-            { value: 32, name: 'rose 3' },
-            { value: 30, name: 'rose 4' },
-            { value: 28, name: 'rose 5' },
-            { value: 26, name: 'rose 6' },
-            { value: 22, name: 'rose 7' },
-            { value: 18, name: 'rose 8' }
+            { value: 8, name: '学业五级人数' },
+            { value: 13, name: '迟到五级人数' },
+            { value: 13, name: '贫困五级人数' },
+            { value: 9, name: '思政五级人数' },
+            { value: 9, name: '心理五级人数' },
+            { value: 8, name: '防诈五级人数' },
           ]
         }
       ]

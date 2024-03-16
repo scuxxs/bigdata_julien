@@ -34,7 +34,7 @@ export default defineComponent({
     height: 100%;
     & > .el-aside{
       height: 100%;
-      background:#545c64;
+      background:#373B44;
     }
   }
 }

@@ -60,7 +60,7 @@ header{
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background:#333;
+  background:#203A43;
 }
 .r-content{
   .user{
