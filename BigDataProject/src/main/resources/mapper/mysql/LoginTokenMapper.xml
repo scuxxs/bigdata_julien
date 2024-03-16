@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luckyowl.bigdata.mapper.mysql.LoginTokenMapper">
+
+    <select id="getLoginTokenByIp" resultType="com.luckyowl.bigdata.entity.mysql.LoginToken">
+        select * from logintoken where netIp = #{netIp} and tokenType = #{tokenType}
+    </select>
+
+    <update id="updateLoginToken" parameterType="com.luckyowl.bigdata.entity.mysql.LoginToken">
+        update logintoken set token = #{loginToken.token} where netIp = #{loginToken.netIp} and tokenType = #{loginToken.tokenType}
+    </update>
+
+    <insert id="addLoginToken" parameterType="com.luckyowl.bigdata.entity.mysql.LoginToken">
+        insert into logintoken (netIp, tokenType, token, uid)
+        values (#{loginToken.netIp}, #{loginToken.tokenType}, #{loginToken.token}, #{loginToken.uid})
+    </insert>
+
+    <delete id="delLoginToken" parameterType="com.luckyowl.bigdata.entity.mysql.LoginToken">
+        delete from logintoken where netIp = #{loginToken.netIp} and tokenType = #{loginToken.tokenType}
+    </delete>
+
+    <delete id="delLoginTokenByIp" parameterType="String">
+        delete from logintoken where netIp = #{netIp}
+    </delete>
+
+</mapper>

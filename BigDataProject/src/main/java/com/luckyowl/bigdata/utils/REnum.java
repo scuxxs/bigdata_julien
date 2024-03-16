@@ -3,7 +3,9 @@ package com.luckyowl.bigdata.utils;
 public enum REnum {
     //状态码定义
     SUCCESS(200,"成功"),
-    ERROR(-1,"发生错误");
+    ERROR(-1,"发生错误"),
+    NOLOGIN(301, "未登录"),
+    WRONGPARM(-2,"参数不合法");
     private Integer code;
     private String msg;
 

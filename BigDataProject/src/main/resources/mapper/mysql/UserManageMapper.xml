@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luckyowl.bigdata.mapper.mysql.UserManageMapper">
+
+    <select id="getAllUserInfo" resultType="com.luckyowl.bigdata.entity.mysql.User">
+        SELECT * FROM user;
+    </select>
+
+    <select id="getUserByUid" resultType="com.luckyowl.bigdata.entity.mysql.User">
+        select * from user where uid = #{uid}
+    </select>
+
+    <insert id="addUser" parameterType="com.luckyowl.bigdata.entity.mysql.User">
+        insert into user (uid, password, nickname, authorization)
+        values (#{user.uid}, #{user.password}, #{user.nickname}, #{user.authorization})
+    </insert>
+
+</mapper>
