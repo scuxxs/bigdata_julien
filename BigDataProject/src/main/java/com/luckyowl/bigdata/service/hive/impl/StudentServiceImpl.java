@@ -3,6 +3,7 @@ package com.luckyowl.bigdata.service.hive.impl;
 import com.luckyowl.bigdata.dto.StudentDTO;
 import com.luckyowl.bigdata.entity.hive.Student;
 import com.luckyowl.bigdata.mapper.hive.StudentMapper;
+import com.luckyowl.bigdata.mapper.mysql.MySQLStudentMapper;
 import com.luckyowl.bigdata.service.hive.StudentService;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +16,21 @@ public class StudentServiceImpl implements StudentService {
     @Resource
     private StudentMapper studentMapper;
 
+    @Resource
+    private MySQLStudentMapper mySQLStudentMapper;
+
     @Override
     public List<Student> getAllStudentInfo() {
-        return studentMapper.getAllStudentInfo();
+        Integer studentNum = mySQLStudentMapper.getNumOfStudent();
+        List<Student> studentList;
+        if(studentNum < 1000){
+            studentList = studentMapper.getAllStudentInfo();
+            mySQLStudentMapper.insertStudent(studentList);
+        }
+        else{
+            studentList = mySQLStudentMapper.getAllStudentInfo();
+        }
+        return studentList;
     }
 
     @Override
