@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e527672a-613f-4258-a6d2-6adaf9760faf" name="Changes" comment="" />
+    <list default="true" id="e527672a-613f-4258-a6d2-6adaf9760faf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/assets/images/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/assets/images/user.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/components/CommonAside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/components/CommonAside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/components/CommonHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/components/CommonHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/components/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/components/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/views/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/views/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/views/Page/Warning.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/views/Page/Warning.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/views/User/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/views/User/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/src/views/student/Student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/src/views/student/Student.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-vue-app/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-vue-app/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +83,11 @@
       <updated>1709868063456</updated>
       <workItem from="1709868065396" duration="390000" />
       <workItem from="1709868474818" duration="12000" />
+      <workItem from="1709946500999" duration="137000" />
+      <workItem from="1709946651264" duration="39000" />
+      <workItem from="1709946702549" duration="238000" />
+      <workItem from="1710243520006" duration="493000" />
+      <workItem from="1710559589588" duration="170000" />
     </task>
     <servers />
   </component>

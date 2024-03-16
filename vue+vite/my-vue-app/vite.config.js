@@ -19,5 +19,17 @@ export default defineConfig({
     ElementPlus({
       useSource: true
     })
-  ]
+  ],
+  server:{
+    proxy:{
+      '/api':{
+        target:'http://172.16.0.41:8080',
+        changeOrigin:true,
+        rewrite:(path)=>path.replace(/^\/api/,''),
+},
+    },
+  },
 })
+
+
+
